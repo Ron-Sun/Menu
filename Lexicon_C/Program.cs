@@ -1,4 +1,9 @@
-﻿using System;
+﻿// *************************************************************
+//
+//  Exercise task "Menu" for Lexicon
+//
+// *************************************************************
+using System;
 using System.Globalization;
 
 namespace Lexicon_C
@@ -21,7 +26,7 @@ namespace Lexicon_C
         static void Main() //string[] args
         {
           MainLoop();
-         Environment.Exit(0);
+          Environment.Exit(0);
         }
 
         /// <summary>
@@ -90,6 +95,11 @@ namespace Lexicon_C
         /// </returns>
         static int ReadMenuItem() 
         {
+            //// Handle only number. "End" is a good way to go...
+            // Nr = GetOnlyIntNumber("Meny val: ");
+            // if (Nr == EXITINT)              // Don't need to exit on user error.
+            //    return -1;
+
             string R = Console.ReadLine();
             if (R.ToLower() == "end")
                 return EXITINT;             // User typed "End" old menu exit item. Just return and exit flag.
@@ -102,7 +112,6 @@ namespace Lexicon_C
             catch (Exception)
             {
                 return -1;                  // Invalid input. Will be ignored
-
             }
 
             if (Nr == 0 )
@@ -371,6 +380,7 @@ namespace Lexicon_C
         {
             int MyNr = Rnr(1, 100);
             int Guess;
+            int Guesses = 0;
             Head("Jag tänker på ett nummer mellan 1 och 100. Gissa vilket.");
 
             Console.WriteLine("Om du tröttnat, skriv 0 så avslutar vi.");
@@ -388,19 +398,20 @@ namespace Lexicon_C
                     return;
                 }
 
+                Guesses++;
                 Console.WriteLine();
                 if (Guess == MyNr)
                 {
-                    Console.WriteLine("Perfekt gissning. Du gissade helt rätt.");
+                    Console.WriteLine("Perfekt gissning. Du gissade helt rätt. Du tog det på " + Guesses + " Gissningar.");
                     Foot();
                     return;
                 }
-
+           
                 // Inform user. To high or to low.
                 if (Guess > MyNr)
-                    Console.WriteLine("Oj. Det talet var för högt. Försök igen.");
+                    Console.WriteLine("Gissning " + Guesses + ": Oj. Det talet var för högt. Försök igen.");
                 else
-                    Console.WriteLine("Nej. Det talet var för lågt. Försök igen.");
+                    Console.WriteLine("Gissning " + Guesses + ": Nej. Det talet var för lågt. Försök igen.");
 
                 // Just for fun.
                 if (Math.Abs(MyNr - Guess) < 5)
