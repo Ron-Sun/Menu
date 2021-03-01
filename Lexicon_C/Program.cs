@@ -415,7 +415,7 @@ namespace Lexicon_C
 
                 // Just for fun.
                 if (Math.Abs(MyNr - Guess) < 5)
-                    Console.WriteLine("Men du var väldigt nära. Kära nån!");
+                    Console.WriteLine("Men du var väldigt nära.  Kära nån!");
                 else if (Math.Abs(MyNr - Guess) < 10)
                     Console.WriteLine("Men. Nu är du nära.");
                 Console.WriteLine();
